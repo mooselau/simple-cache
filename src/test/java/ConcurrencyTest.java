@@ -4,9 +4,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.example.cache.EvictionPolicy;
-import org.example.cache.ICache;
-import org.example.cache.SimpleCache;
+import com.crazygoose.starter.cache.EvictionPolicy;
+import com.crazygoose.starter.cache.ICache;
+import com.crazygoose.starter.cache.SimpleCache;
 import org.junit.Test;
 
 

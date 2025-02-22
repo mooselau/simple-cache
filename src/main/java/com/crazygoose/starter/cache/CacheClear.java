@@ -1,14 +1,16 @@
-package org.example.cache;
+package com.crazygoose.starter.cache;
 
 import java.util.concurrent.DelayQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import lombok.Getter;
 
 
 // 缓存清理器
 public class CacheClear<K, V> {
 
     // 使用 delayqueue 来做成高效率的 延迟队列，当满足过期时间的时候完成自动清除
+    @Getter
     private final DelayQueue<DelayedCacheEntry<K, V>> expireQueue = new DelayQueue<>();
     // 缓存清理 单线程
     private final ExecutorService cacheClearExecutor = Executors.newSingleThreadExecutor(r -> {
@@ -26,15 +28,16 @@ public class CacheClear<K, V> {
         cacheClearExecutor.execute(this::cacheClear);
     }
 
-    public DelayQueue<DelayedCacheEntry<K, V>> getExpireQueue() {
-        return expireQueue;
-    }
-
     public void add(K key, CacheEntry<V> entry) {
         // 包装成 delayed entry 入queue
         expireQueue.offer(new DelayedCacheEntry<>(key, entry));
     }
 
+    /**
+     * This method is responsible for clearing cached entries that have expired.
+     * It continuously checks an expiration queue for entries that are ready to be removed from the main cache.
+     * The method runs in a loop until the current thread is interrupted.
+     */
     private void cacheClear() {
         try {
             while (!Thread.currentThread().isInterrupted()) {

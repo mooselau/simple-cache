@@ -1,4 +1,4 @@
-package org.example.cache;
+package com.crazygoose.starter.cache;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -56,7 +56,6 @@ public abstract class AbstractCache<K, V> implements ICache<K, V> {
         cacheClear.add(key, entry);
     }
 
-    // TODO: 补充日志
     @Override
     public Optional<V> get(K key) {
         CacheEntry<V> entry = cache.get(key);
@@ -118,6 +117,12 @@ public abstract class AbstractCache<K, V> implements ICache<K, V> {
 
     @Override
     public void removeAll(Set<K> keys) {
-        cache.keySet().removeAll(keys);
+        // remove all if no key provided
+        if (keys.isEmpty()) {
+            cache.clear();
+        } else {
+            // otherwise remove entries only with keys
+            cache.keySet().removeAll(keys);
+        }
     }
 }

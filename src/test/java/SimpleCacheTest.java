@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import org.example.cache.EvictionPolicy;
-import org.example.cache.ICache;
-import org.example.cache.SimpleCache;
+import com.crazygoose.starter.cache.EvictionPolicy;
+import com.crazygoose.starter.cache.ICache;
+import com.crazygoose.starter.cache.SimpleCache;
 import org.junit.Test;
 
 
