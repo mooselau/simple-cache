@@ -11,7 +11,8 @@ on:
     # workflow actions monitors below paths for triggering
     paths:
       - './**'
-      - '.github/workflows/lib-publish.yaml' 
+      - '.github/workflows/lib-publish.yaml'
+      - './pom.xml'
 
 jobs:
   libs-build-publish:
