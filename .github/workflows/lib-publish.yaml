@@ -10,7 +10,7 @@ on:
     # workflow actions monitors below paths for triggering
     paths:
       - './**'
-      - '.github/workflows/lib-publish.yml'
+      - '.github/workflows/lib-publish.yaml'
 
 jobs:
   libs-build-publish:
