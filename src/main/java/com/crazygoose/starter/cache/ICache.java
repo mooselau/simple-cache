@@ -1,4 +1,4 @@
-package org.example.cache;
+package com.crazygoose.starter.cache;
 
 import java.util.Map;
 import java.util.Optional;
@@ -7,12 +7,26 @@ import java.util.Set;
 
 public interface ICache<K, V> {
     // 放入缓存，指定过期时间（单位：毫秒）
+
+    /**
+     * put into cache.
+     * @param key
+     * @param value
+     * @param expireAfterMillis expire time
+     */
     void put(K key, V value, long expireAfterMillis);
 
-    // 获取缓存值
+    /**
+     * 获取缓存值
+     * @param key
+     * @return Optional.empty() is not found
+     */
     Optional<V> get(K key);
 
-    // 删除缓存
+    /**
+     * 清理缓存
+     * @param key
+     */
     void remove(K key);
 
     // 清空所有缓存

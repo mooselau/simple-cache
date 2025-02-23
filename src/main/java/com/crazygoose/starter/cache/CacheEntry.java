@@ -1,4 +1,4 @@
-package org.example.cache;
+package com.crazygoose.starter.cache;
 
 import lombok.Getter;
 import lombok.Setter;

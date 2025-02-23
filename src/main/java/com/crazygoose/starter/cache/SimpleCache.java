@@ -1,11 +1,10 @@
-package org.example.cache;
+package com.crazygoose.starter.cache;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
-
 
 public class SimpleCache<K extends Serializable, V extends Serializable> extends AbstractCache<K, V> {
 

@@ -1,13 +1,14 @@
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verifyNoInteractions;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import org.example.cache.AbstractCache;
-import org.example.cache.CacheEntry;
-import org.example.cache.EvictionPolicy;
-import org.example.cache.ICache;
+import com.crazygoose.starter.cache.AbstractCache;
+import com.crazygoose.starter.cache.CacheEntry;
+import com.crazygoose.starter.cache.EvictionPolicy;
+import com.crazygoose.starter.cache.ICache;
 import org.junit.Test;
 
 
@@ -43,6 +44,20 @@ public class AbstractCacheTest {
         assertEquals(Optional.empty(), cache.get("key2"));
     }
 
+    @Test
+    public void testRemoveAllWithEmptySet() {
+        ICache<String, String> cache = new DummyCache<>(3, EvictionPolicy.LRU);
+        Map<String, String> entries = new HashMap<>();
+        entries.put("key1", "value1");
+        entries.put("key2", "value2");
+        cache.putAll(entries, 10000);
+
+        assertEquals(Optional.of("value1"), cache.get("key1"));
+        assertEquals(Optional.of("value2"), cache.get("key2"));
+
+        cache.removeAll(new HashSet<>());
+        assertEquals(0, cache.size());
+    }
 
     @Test
     public void testHitAndMissRatio() {

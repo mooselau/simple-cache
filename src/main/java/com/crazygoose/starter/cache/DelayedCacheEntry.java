@@ -1,4 +1,4 @@
-package org.example.cache;
+package com.crazygoose.starter.cache;
 
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;

@@ -1,0 +1,45 @@
+# This workflow will build a package using Maven and then publish it to GitHub packages when a release is created
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
+
+name: Library Packaging & Publishing
+
+on:
+  push:
+    branches:
+      - develop
+    # workflow actions monitors below paths for triggering
+    paths:
+      - './**'
+      - '.github/workflows/lib-publish.yml'
+
+jobs:
+  libs-build-publish:
+    # NOTE: runs-on ONLY support available versions by Github Runners, otherwise this workflow may not run !!
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Set up JDK8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+
+      - name: Build library
+        working-directory: ./
+        run:
+          mvn -B install --file pom.xml
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Publish to github packages
+        working-directory: ./
+        run: mvn deploy -Dmaven.install.skip=true -Dmaven.test.skip=true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

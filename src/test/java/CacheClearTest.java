@@ -1,11 +1,10 @@
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import org.example.cache.CacheClear;
-import org.example.cache.CacheEntry;
-import org.example.cache.ICache;
+import com.crazygoose.starter.cache.CacheClear;
+import com.crazygoose.starter.cache.CacheEntry;
+import com.crazygoose.starter.cache.ICache;
 import org.junit.Test;
 import org.mockito.Mockito;
-
 
 public class CacheClearTest {
 

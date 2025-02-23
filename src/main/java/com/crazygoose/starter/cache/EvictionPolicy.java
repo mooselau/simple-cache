@@ -1,4 +1,4 @@
-package org.example.cache;
+package com.crazygoose.starter.cache;
 
 public enum EvictionPolicy {
     LRU,
