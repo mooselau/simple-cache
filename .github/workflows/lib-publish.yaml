@@ -12,6 +12,9 @@ on:
     paths:
       - './**'
       - '.github/workflows/lib-publish.yaml' 
+      - './README.md'
+      - './pom.xml'
+      - './SimpleCache.md'
 
 jobs:
   libs-build-publish:
